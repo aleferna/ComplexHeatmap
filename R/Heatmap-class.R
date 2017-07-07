@@ -1404,7 +1404,9 @@ setMethod(f = "draw_dend",
     }
 
     dend_padding = unit(1, "mm")
-    pushViewport(viewport(name = paste(object@name, which, "cluster", k, sep = "_"), ...))
+        
+      #Fix bug row / col dend gp is never assigned
+    pushViewport(viewport(name = paste(object@name, which, "cluster", k, sep = "_"), gp=gp ...))
 
     if(side == "left") {
         grid.dendrogram(dend, name = paste(object@name, "dend_row", k, sep = "_"), max_height = max_height, facing = "right", order = "reverse", x = dend_padding, width = unit(1, "npc") - dend_padding*2, just = "left")
